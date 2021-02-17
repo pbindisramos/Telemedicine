@@ -13,7 +13,7 @@ const Login = () => {
               alt="Workflow"
             />
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              TOMA TU CITA ONLINE CON EL ALQUIMISTA
+              TELEMEDICINA APP
             </h2>
             <p class="mt-2 text-center text-sm text-gray-600">
               <a
