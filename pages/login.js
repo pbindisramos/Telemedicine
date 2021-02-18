@@ -1,110 +1,90 @@
 import React from "react";
 import Layout from "../components/Layout";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Login = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("El email no es válido")
+        .required("El email es obligatorio"),
+      password: Yup.string().required("El password es obligatorio"),
+    }),
+    onSubmit: (valores) => {
+      console.log(valores);
+    },
+  });
+
   return (
     <Layout>
-      <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8">
-          <div>
-            <img
-              class="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
-            />
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              TELEMEDICINA APP
-            </h2>
-            <p class="mt-2 text-center text-sm text-gray-600">
-              <a
-                href="#"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
-              ></a>
-            </p>
-          </div>
-          <form class="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" value="true" />
-            <div class="rounded-md shadow-sm -space-y-px">
-              <div>
-                <label for="email-address" class="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
-                />
-              </div>
-              <div>
-                <label for="password" class="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autocomplete="current-password"
-                  required
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <input
-                  id="remember_me"
-                  name="remember_me"
-                  type="checkbox"
-                  class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
+      <div className="md:w-4/5 xl:w-3/5 mx-auto mb-32">
+        <h2 className="text-4xl font-sans font-bold text-white-800 text-center my-4">
+          Iniciar Sesión
+        </h2>
+        <div className="flex justify-center mt-5">
+          <div className="w-full max-w-lg">
+            <form
+              className="bg-white rounded shadown-md px-8 pt-6 pb-8 mb-4"
+              onSubmit={formik.handleSubmit}
+            >
+              <div className="mb-4">
                 <label
-                  for="remember_me"
-                  class="ml-2 block text-sm text-gray-900"
+                  className="block text-black text-sm font-bold mb-2"
+                  htmlFor="email"
                 >
-                  Remember me
+                  Email
                 </label>
+                <input
+                  type="email"
+                  className="shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="email"
+                  placeholder="Correo"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <div className="my-2 bg-gray-200 border-l-4 border-blue-500 text-red-600 p-4">
+                    <p className="font-bold">Error</p>
+                    <p>{formik.errors.email}</p>
+                  </div>
+                ) : null}
               </div>
-
-              <div class="text-sm">
-                <a
-                  href="#"
-                  class="font-medium text-indigo-600 hover:text-indigo-500"
+              <div className="mb-4">
+                <label
+                  className="block text-black text-sm font-bold mb-2"
+                  htmlFor="password"
                 >
-                  Forgot your password?
-                </a>
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  className="shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="password"
+                  placeholder="Password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <div className="my-2 bg-gray-200 border-l-4 border-blue-500 text-red-600 p-4">
+                    <p className="font-bold">Error</p>
+                    <p>{formik.errors.password}</p>
+                  </div>
+                ) : null}
               </div>
-            </div>
-
-            <div>
-              <button
+              <input
                 type="submit"
-                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <svg
-                    class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </span>
-                Sign in
-              </button>
-            </div>
-          </form>
+                className="bg-blue-500 hover:bg-gay-900 w-full p-2 text-white uppercase font-bold rounded"
+                value="Iniciar Sesión"
+              />
+            </form>
+          </div>
         </div>
       </div>
     </Layout>
