@@ -1,21 +1,11 @@
 import React from "react";
 import Layout from "../components/Layout";
-import Link from "next/link";
+import Head from "next/head";
+
 const Index = () => {
   return (
     <Layout>
-      <div>
-        <Link href="/login">
-          <a className="bg-blue-500 px-5 py-3 rounded-lg text-white uppercase mr-2">
-            Iniciar Sesión
-          </a>
-        </Link>
-        <Link href="/crearcuenta">
-          <a className="bg-blue-500 px-5 py-3 rounded-lg text-white uppercase">
-            Crear Cuenta
-          </a>
-        </Link>
-      </div>
+      <h1>Index</h1>
     </Layout>
   );
 };
