@@ -6,6 +6,8 @@ import {
   REGISTRO_EXITOSO,
   REGISTRO_ERROR,
   LIMPIAR_ALERTA,
+  LOGIN_EXITOSO,
+  LOGIN_ERROR,
 } from "../../types/index";
 
 import clienteAxios from "../../config/axios";
@@ -24,7 +26,7 @@ const AuthState = ({ children }) => {
   //REGISTRAR NUEVOS USUARIOS
   const registrarUsuario = async (datos) => {
     try {
-      const respuesta = await clienteAxios.post("/api/pacientes", datos);
+      const respuesta = await clienteAxios.post("/api/usuarios", datos);
       dispatch({
         type: REGISTRO_EXITOSO,
         payload: respuesta.data.msg,
@@ -43,6 +45,25 @@ const AuthState = ({ children }) => {
     }, 3000);
   };
 
+  //Autenticar Usuarios
+  const iniciarSesion = async (datos) => {
+    try {
+      const respuesta = await clienteAxios.post("/api/auth", datos);
+      console.log(respuesta);
+    } catch (error) {
+      dispatch({
+        type: LOGIN_ERROR,
+        payload: error.response.data.msg,
+      });
+    }
+    //LIMPIAR ALERTA
+    setTimeout(() => {
+      dispatch({
+        type: LIMPIAR_ALERTA,
+      });
+    }, 3000);
+  };
+
   //USUARIO AUTENTICADO
   const usuarioAutenticado = (nombre) => {
     dispatch({
@@ -50,6 +71,7 @@ const AuthState = ({ children }) => {
       payload: nombre,
     });
   };
+
   return (
     <authContext.Provider
       value={{
@@ -58,6 +80,7 @@ const AuthState = ({ children }) => {
         usuario: state.usuario,
         mensaje: state.mensaje,
         registrarUsuario,
+        iniciarSesion,
         usuarioAutenticado,
       }}
     >
