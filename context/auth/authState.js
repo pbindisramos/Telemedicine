@@ -1,7 +1,12 @@
 import React, { useReducer } from "react";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
-import { USUARIO_AUTENTICADO } from "../../types/index";
+import {
+  USUARIO_AUTENTICADO,
+  REGISTRO_EXITOSO,
+  REGISTRO_ERROR,
+  LIMPIAR_ALERTA,
+} from "../../types/index";
 
 import clienteAxios from "../../config/axios";
 
@@ -20,10 +25,22 @@ const AuthState = ({ children }) => {
   const registrarUsuario = async (datos) => {
     try {
       const respuesta = await clienteAxios.post("/api/pacientes", datos);
-      console.log(respuesta);
+      dispatch({
+        type: REGISTRO_EXITOSO,
+        payload: respuesta.data.msg,
+      });
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: REGISTRO_ERROR,
+        payload: error.response.data.msg,
+      });
     }
+    //LIMPIAR ALERTA
+    setTimeout(() => {
+      dispatch({
+        type: LIMPIAR_ALERTA,
+      });
+    }, 3000);
   };
 
   //USUARIO AUTENTICADO
