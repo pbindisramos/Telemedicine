@@ -9,7 +9,11 @@ const Index = () => {
   const { usuarioAutenticado } = AuthContext;
 
   useEffect(() => {
-    usuarioAutenticado();
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      usuarioAutenticado();
+    }
   }, []);
   return (
     <Layout>
