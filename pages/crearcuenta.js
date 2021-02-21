@@ -16,6 +16,7 @@ const crearCuenta = () => {
       nombre: "",
       email: "",
       password: "",
+      confirmarpassword: "",
     },
     validationSchema: Yup.object({
       nombre: Yup.string().required("El nombre es obligatorio"),
@@ -25,6 +26,13 @@ const crearCuenta = () => {
       password: Yup.string()
         .required("El password es obligatorio")
         .min(6, "El password debe contener al menos 6 carácteres"),
+      confirmarpassword: Yup.string().when("password", {
+        is: (val) => (val && val.length > 0 ? true : false),
+        then: Yup.string().oneOf(
+          [Yup.ref("password")],
+          "Las contraseñas necesitan ser iguales"
+        ),
+      }),
     }),
     onSubmit: (valores) => {
       registrarUsuario(valores);
@@ -110,6 +118,30 @@ const crearCuenta = () => {
                   <div className="my-2 bg-gray-200 border-l-4 border-blue-500 text-red-600 p-4">
                     <p className="font-bold">Error</p>
                     <p>{formik.errors.password}</p>
+                  </div>
+                ) : null}
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-black text-sm font-bold mb-2"
+                  htmlFor="password"
+                >
+                  Confirmar contraseña
+                </label>
+                <input
+                  type="password"
+                  className="shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="confirmarpassword"
+                  placeholder="confirmar Contraseña"
+                  value={formik.values.confirmarpassword}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.confirmarpassword &&
+                formik.errors.confirmarpassword ? (
+                  <div className="my-2 bg-gray-200 border-l-4 border-blue-500 text-red-600 p-4">
+                    <p className="font-bold">Error</p>
+                    <p>{formik.errors.confirmarpassword}</p>
                   </div>
                 ) : null}
               </div>
