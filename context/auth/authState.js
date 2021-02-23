@@ -77,6 +77,8 @@ const AuthState = ({ children }) => {
 
     if (token) {
       tokenAuth(token);
+    } else {
+      return;
     }
     try {
       const respuesta = await clienteAxios.get("/api/auth");
