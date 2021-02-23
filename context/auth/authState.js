@@ -22,6 +22,7 @@ const AuthState = ({ children }) => {
     autenticado: null,
     usuario: null,
     mensaje: null,
+    rolusuario: null,
   };
   //Definendo F() del reducer
   const [state, dispatch] = useReducer(authReducer, initialState);
