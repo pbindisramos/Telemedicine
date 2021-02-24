@@ -1,3 +1,4 @@
+import { Router, useRouter } from "next/router";
 import React, { useReducer } from "react";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
@@ -15,6 +16,7 @@ import clienteAxios from "../../config/axios";
 import tokenAuth from "../../config/tokenAuth";
 
 const AuthState = ({ children }) => {
+  const router = useRouter();
   //Definiedo state inicial
   const initialState = {
     token:
@@ -104,6 +106,7 @@ const AuthState = ({ children }) => {
 
   //cerrar la sesion
   const cerrarSesion = () => {
+    router.push("/");
     dispatch({
       type: CERRAR_SESION,
     });

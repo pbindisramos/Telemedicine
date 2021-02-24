@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header className="py-2 flex flex-col md:flex-row items-center justify-between h-32">
       <Link href="/">
-        <img className="w-64" src="logo.png" />
+        <img className="h-64" src="logo.png" />
       </Link>
 
       <div>
@@ -25,11 +25,10 @@ const Header = () => {
               onClick={() => cerrarSesion()}
             >
               Cerrar Sesión
-            </button>{" "}
+            </button>
           </div>
         ) : (
           <>
-            {" "}
             <Link href="/login">
               <a className="bg-blue-500 px-5 py-3 rounded-lg text-white uppercase mr-2">
                 Iniciar Sesión

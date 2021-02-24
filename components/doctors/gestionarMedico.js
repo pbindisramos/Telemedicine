@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import Layout from "../components/Layout";
+import Layout from "../Layout";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import authContext from "../context/auth/authContext";
-import Alerta from "../components/Alerta";
+import authContext from "../../context/auth/authContext";
+import Alerta from "../Alerta";
 
 const crearMedico = () => {
   //acceder al state
