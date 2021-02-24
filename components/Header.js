@@ -10,9 +10,9 @@ const Header = () => {
     usuarioAutenticado();
   }, []);
   return (
-    <header className="py-2 flex flex-col md:flex-row items-center justify-between h-32">
+    <header className=" bg-gray-200 py-8 flex flex-col md:flex-row items-center justify-between h-32">
       <Link href="/">
-        <img className="h-64" src="logo.png" />
+        <img className=" object-contain object-left-top w-64" src="logo.png" />
       </Link>
 
       <div>

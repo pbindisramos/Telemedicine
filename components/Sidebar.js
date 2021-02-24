@@ -9,7 +9,7 @@ const SideBar = () => {
         <div className="md:relative mx-auto lg:float-right lg:px-6">
           <ul className="list-reset flex flex-row md:flex-col text-center md:text-left">
             <li className="mr-3 flex-1">
-              <Link href="/gestionarmedico">
+              <Link>
                 <a
                   href="#"
                   className="block py-1 md:py-3 pl-1 align-middle text-grey-darkest no-underline hover:text-pink border-b-2 border-grey-darkest md:border-black hover:border-pink"

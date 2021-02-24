@@ -27,7 +27,28 @@ const DoctorState = ({ children }) => {
     });
   };
 
-  return <doctorContext.Provider>{children}</doctorContext.Provider>;
+  //Obtener Médicos
+  const obtenerMedicos = async () => {
+    try {
+      //const resultado = await clienteAxios.get("/api/medicos");
+    } catch (error) {}
+  };
+
+  return (
+    <doctorContext.Provider
+      value={{
+        doctores: state.doctores,
+        formulariomedico: state.formulariomedico,
+        errorformulariomedico: state.errorformulariomedico,
+        doctor: state.doctor,
+        mensaje: state.mensaje,
+        mostrarFormulario,
+        obtenerMedicos,
+      }}
+    >
+      {children}
+    </doctorContext.Provider>
+  );
 };
 
 export default DoctorState;

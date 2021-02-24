@@ -13,10 +13,10 @@ const Layout = ({ children }) => {
         />
       </Head>
 
-      <div className="bg-white-100 min-h-screen">
+      <div className="bg-gray-100 min-h-screen">
         <div className="container mx-auto">
           <Header />
-          <main className="mt-20">{children}</main>
+          <main className="mt-2">{children}</main>
         </div>
       </div>
     </>
