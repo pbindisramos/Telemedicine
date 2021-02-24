@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar";
 import Layout from "../components/Layout";
 import authContext from "../context/auth/authContext";
 
@@ -10,11 +11,13 @@ const Index = () => {
 
   //state rol
   const [rol, guardarRol] = useState({
-    rol: "",
+    rol: null,
   });
 
-  const crearRol = () => {
-    guardarRol("admin");
+  const crearRol = (usuario) => {
+    if (usuario) {
+      guardarRol(usuario.role[0].name);
+    }
   };
 
   useEffect(() => {
@@ -22,15 +25,14 @@ const Index = () => {
 
     if (token) {
       usuarioAutenticado();
-      crearRol();
+      crearRol(usuario);
     }
-  }, []);
+  }, [usuario]);
 
   return (
-    <Layout>
-      <h1>Index</h1>
-      {autenticado ? <h1>{`${rol}`}</h1> : null}
-    </Layout>
+    <>
+      <Layout>{autenticado ? <Sidebar /> : null}</Layout>
+    </>
   );
 };
 
