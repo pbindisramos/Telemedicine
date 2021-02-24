@@ -10,15 +10,15 @@ const Header = () => {
     usuarioAutenticado();
   }, []);
   return (
-    <header className="py-8 flex flex-col md:flex-row items-center justify-between">
+    <header className="py-2 flex flex-col md:flex-row items-center justify-between h-32">
       <Link href="/">
-        <a>LOGO</a>
+        <img className="w-64" src="logo.png" />
       </Link>
 
       <div>
         {usuario ? (
           <div className="flex items-center">
-            <p className="mr-2">Hola {usuario.nombre}</p>
+            <p className="mr-2 font-bold">Hola {usuario.nombre}</p>
             <button
               type="button"
               className="bg-blue-500 px-5 py-3 rounded-lg text-white uppercase"

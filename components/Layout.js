@@ -12,6 +12,7 @@ const Layout = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
+
       <div className="bg-white-100 min-h-screen">
         <div className="container mx-auto">
           <Header />
