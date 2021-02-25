@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
+//import Sidebar from "../components/Sidebar";
 import Layout from "../components/Layout";
 import authContext from "../context/auth/authContext";
 
@@ -31,7 +31,9 @@ const Index = () => {
 
   return (
     <>
-      <Layout>{autenticado ? <Sidebar /> : null}</Layout>
+      <Layout>
+        <h1>hola</h1>
+      </Layout>
     </>
   );
 };
