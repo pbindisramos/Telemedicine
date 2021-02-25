@@ -34,6 +34,7 @@ export default (state, action) => {
         ...state,
         usuario: action.payload,
         autenticado: true,
+        rol: action.payload2,
       };
     case CERRAR_SESION:
       localStorage.removeItem("token");

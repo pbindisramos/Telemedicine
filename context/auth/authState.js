@@ -23,6 +23,7 @@ const AuthState = ({ children }) => {
       typeof windows !== "undefined" ? localStorage.getItem("token") : null,
     autenticado: null,
     usuario: null,
+    rol: null,
     mensaje: null,
   };
   //Definendo F() del reducer
@@ -88,6 +89,7 @@ const AuthState = ({ children }) => {
         dispatch({
           type: USUARIO_AUTENTICADO,
           payload: respuesta.data.usuario,
+          payload2: respuesta.data.usuario.role[0].name,
         });
       }
     } catch (error) {
@@ -119,6 +121,7 @@ const AuthState = ({ children }) => {
         autenticado: state.autenticado,
         usuario: state.usuario,
         mensaje: state.mensaje,
+        rol: state.rol,
         registrarUsuario,
         iniciarSesion,
         usuarioAutenticado,
