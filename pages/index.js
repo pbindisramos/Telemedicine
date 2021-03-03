@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
-import Layout from "../components/Layout";
-import authContext from "../context/auth/authContext";
+import React, { useContext, useEffect } from 'react';
+import Sidebar from '../components/Sidebar';
+import GestionarDiasTrabajo from '../components/Admin/GestionarDiasTrabajo';
+import Layout from '../components/Layout';
+import authContext from '../context/auth/authContext';
 
 const Index = () => {
   //extraer usuario autenticado storage
@@ -10,7 +11,7 @@ const Index = () => {
   const { usuario, usuarioAutenticado, rol } = AuthContext;
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     if (token) {
       usuarioAutenticado();
@@ -19,7 +20,9 @@ const Index = () => {
 
   return (
     <>
-      <Layout>{rol && usuario ? <Sidebar /> : null}</Layout>
+      <Layout>
+        {rol == 'doctor' && usuario ? <GestionarDiasTrabajo /> : null}
+      </Layout>
     </>
   );
 };
