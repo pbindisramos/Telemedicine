@@ -35,17 +35,22 @@ const GestionarDiasTrabajo = () => {
                   <td className='py-3 px-6 text-left'>
                     <div className='flex items-center'>
                       <div className='mr-2'>
-                        <div className='form-check form-switch'>
+                        <div className='relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in'>
                           <input
-                            className='form-check-input'
                             type='checkbox'
-                            id='flexSwitchCheckDefault'
+                            name='toggle'
+                            id='toggle'
+                            className='toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer'
                           />
                           <label
-                            className='form-check-label'
-                            for='flexSwitchCheckDefault'
+                            for='toggle'
+                            className='toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer'
                           ></label>
                         </div>
+                        <label
+                          for='toggle'
+                          className='text-xs text-gray-700'
+                        ></label>
                       </div>
                     </div>
                   </td>
