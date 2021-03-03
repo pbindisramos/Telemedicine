@@ -1,6 +1,14 @@
 import React from 'react';
 
-const dias = () => {};
+const dias = [
+  'Lunes',
+  'Martes',
+  'Miecoles',
+  'Jueves',
+  'Viernes',
+  'Sábado',
+  'Domingo',
+];
 
 const GestionarDiasTrabajo = () => {
   return (
@@ -20,12 +28,25 @@ const GestionarDiasTrabajo = () => {
               <tbody className='text-gray-600 text-sm font-light'>
                 <tr className='border-b border-gray-200 hover:bg-gray-100'>
                   <td className='py-3 px-6 text-left whitespace-nowrap'>
-                    <div className='flex items-center'></div>
+                    <div className='flex items-center'>
+                      <span>Lunes</span>
+                    </div>
                   </td>
                   <td className='py-3 px-6 text-left'>
                     <div className='flex items-center'>
-                      <div className='mr-2'></div>
-                      <span>Eshal Rosas</span>
+                      <div className='mr-2'>
+                        <div className='form-check form-switch'>
+                          <input
+                            className='form-check-input'
+                            type='checkbox'
+                            id='flexSwitchCheckDefault'
+                          />
+                          <label
+                            className='form-check-label'
+                            for='flexSwitchCheckDefault'
+                          ></label>
+                        </div>
+                      </div>
                     </div>
                   </td>
                   <td className='py-3 px-6 text-center'>
