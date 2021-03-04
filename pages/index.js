@@ -16,7 +16,7 @@ const Index = () => {
     if (token) {
       usuarioAutenticado();
     }
-  }, [usuario]);
+  }, []);
 
   return (
     <>

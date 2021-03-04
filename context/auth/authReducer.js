@@ -6,7 +6,7 @@ import {
   LOGIN_EXITOSO,
   LOGIN_ERROR,
   CERRAR_SESION,
-} from "../../types/index";
+} from '../../types/index';
 
 export default (state, action) => {
   switch (action.type) {
@@ -18,7 +18,7 @@ export default (state, action) => {
         mensaje: action.payload,
       };
     case LOGIN_EXITOSO:
-      localStorage.setItem("token", action.payload);
+      localStorage.setItem('token', action.payload);
       return {
         ...state,
         token: action.payload,
@@ -37,12 +37,13 @@ export default (state, action) => {
         rol: action.payload2,
       };
     case CERRAR_SESION:
-      localStorage.removeItem("token");
+      localStorage.removeItem('token');
       return {
         ...state,
         usuario: null,
         token: null,
         autenticado: null,
+        rol: null,
       };
     default:
       return state;
