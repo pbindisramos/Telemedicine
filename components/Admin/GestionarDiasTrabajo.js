@@ -1,25 +1,26 @@
 import React from 'react';
 
-const dias = [
-  'Lunes',
-  'Martes',
-  'Miecoles',
-  'Jueves',
-  'Viernes',
-  'Sábado',
-  'Domingo',
-];
-
-let horas = [];
-const llenarHoras = () => {
-  for (let i = 0; i < 11; i++) {
-    horas += i;
-  }
-};
-
-llenarHoras();
-console.log(horas);
 const GestionarDiasTrabajo = () => {
+  const dias = [
+    'Lunes',
+    'Martes',
+    'Miecoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+    'Domingo',
+  ];
+  const llenarHoras = () => {
+    let horas = [];
+    for (let i = 0; i < 11; i++) {
+      horas.push(i);
+    }
+    return horas;
+  };
+
+  const horas = llenarHoras();
+  console.log(horas);
+
   return (
     <div className='overflow-x-auto'>
       <div className='min-w-screen min-h-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden'>
@@ -36,11 +37,11 @@ const GestionarDiasTrabajo = () => {
               </thead>
 
               <tbody className='text-gray-600 text-sm font-light'>
-                {dias.map((dia) => (
+                {dias.map((dia, index) => (
                   <tr className='border-b border-gray-200 hover:bg-gray-100'>
                     <td className='py-3 px-6 text-left whitespace-nowrap'>
                       <div className='flex items-center'>
-                        <span>{`${dia}`}</span>
+                        <span key={index}>{`${dia}`}</span>
                       </div>
                     </td>
                     <td className='py-3 px-6 text-left'>
@@ -54,12 +55,12 @@ const GestionarDiasTrabajo = () => {
                               className='toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer'
                             />
                             <label
-                              htmlfor='toggle'
+                              htmlFor='toggle'
                               className='toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer'
                             ></label>
                           </div>
                           <label
-                            htmlfor='toggle'
+                            htmlFor='toggle'
                             className='text-xs text-gray-700'
                           ></label>
                         </div>
@@ -68,7 +69,11 @@ const GestionarDiasTrabajo = () => {
                     <td className='py-3 px-6 text-center'>
                       <div className='flex items-center justify-center'>
                         <select type='time' className='form-control mr-3'>
-                          <option value=''>08:00 am</option>
+                          {horas.map((hora, index) => (
+                            <option value='' key={index}>
+                              {`${hora}`}:00 am
+                            </option>
+                          ))}
                         </select>
                         <select type='time' className='form-control'>
                           <option value=''>10:00 am</option>
