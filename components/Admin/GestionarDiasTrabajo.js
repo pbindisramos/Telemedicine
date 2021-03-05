@@ -90,6 +90,7 @@ const GestionarDiasTrabajo = () => {
                                   </>
                                 );
                               })}
+                              <option value=''>13:00 am</option>
                             </select>
                           </div>
                           <div className='col-auto'>
@@ -106,6 +107,7 @@ const GestionarDiasTrabajo = () => {
                                   </>
                                 );
                               })}
+                              <option value=''>13:00 am</option>
                             </select>
                           </div>
                         </div>
@@ -125,6 +127,7 @@ const GestionarDiasTrabajo = () => {
                                 </>
                               );
                             })}
+                            <option value=''>23:00 am</option>
                           </select>
                           <select type='time' className='form-control'>
                             {horasPM.map((horapm, index) => {
@@ -139,6 +142,7 @@ const GestionarDiasTrabajo = () => {
                                 </>
                               );
                             })}
+                            <option value=''>23:00 am</option>
                           </select>
                         </div>
                       </td>
