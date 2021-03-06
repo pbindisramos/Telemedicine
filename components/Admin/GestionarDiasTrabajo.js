@@ -106,8 +106,7 @@ const GestionarDiasTrabajo = () => {
                                   return (
                                     <>
                                       <option
-                                        value='{`${horaam}`}:00'
-                                        am
+                                        value={`${horaam}` + ':00 am'}
                                         key={index}
                                       >
                                         {`${horaam}`}:00 am
