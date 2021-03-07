@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const GestionarDiasTrabajo = () => {
   const [horastrabajo, guardarHoras] = useState({
+    dia: '',
     activo: '',
     manana_comienzo: '',
     manana_fin: '',
@@ -71,7 +72,12 @@ const GestionarDiasTrabajo = () => {
                       <tr className='border-b border-gray-200 hover:bg-gray-100'>
                         <td className='py-3 px-6 text-left whitespace-nowrap'>
                           <div className='flex items-center'>
-                            <span key={index}>{`${dia}`}</span>
+                            <span
+                              key={index}
+                              onChange={onChange}
+                              name='dia'
+                              value={`${dia}`}
+                            >{`${dia}`}</span>
                           </div>
                         </td>
                         <td className='py-3 px-6'>
@@ -112,7 +118,7 @@ const GestionarDiasTrabajo = () => {
                                         {`${horaam}`}:00 am
                                       </option>
                                       <option
-                                        value='{`${horaam}`}:30'
+                                        value={`${horaam}` + ':30 am'}
                                         key={index}
                                       >
                                         {`${horaam}`}:30 am
@@ -134,13 +140,13 @@ const GestionarDiasTrabajo = () => {
                                   return (
                                     <>
                                       <option
-                                        value='{`${horaam}`}:00'
+                                        value={`${horaam}` + ':00 am'}
                                         key={index}
                                       >
                                         {`${horaam}`}:00 am
                                       </option>
                                       <option
-                                        value='{`${horaam}`}:30'
+                                        value={`${horaam}` + ':30 am'}
                                         key={index}
                                       >
                                         {`${horaam}`}:30 am
@@ -165,13 +171,13 @@ const GestionarDiasTrabajo = () => {
                                 return (
                                   <>
                                     <option
-                                      value='{`${horapm}`}:00'
+                                      value={`${horapm}` + ':00 am'}
                                       key={index}
                                     >
                                       {`${horapm}`}:00 pm
                                     </option>
                                     <option
-                                      value='{`${horapm}`}:30'
+                                      value={`${horapm}` + ':30 am'}
                                       key={index}
                                     >
                                       {`${horapm}`}:30 pm
@@ -191,13 +197,13 @@ const GestionarDiasTrabajo = () => {
                                 return (
                                   <>
                                     <option
-                                      value='{`${horapm}`}:00'
+                                      value={`${horapm}` + ':00 am'}
                                       key={index}
                                     >
                                       {`${horapm}`}:00 pm
                                     </option>
                                     <option
-                                      value='{`${horapm}`}:30'
+                                      value={`${horapm}` + ':30 am'}
                                       key={index}
                                     >
                                       {`${horapm}`}:30 pm
