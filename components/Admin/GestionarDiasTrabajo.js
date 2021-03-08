@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
+import clienteAxios from '../../config/axios';
 
 const GestionarDiasTrabajo = () => {
   const [horastrabajo, guardarHoras] = useState({
-    dia: '',
     activo: '',
     manana_comienzo: '',
     manana_fin: '',
     tarde_comienzo: '',
     tarde_fin: '',
   });
+
+  const {
+    activo,
+    manana_comienzo,
+    manana_fin,
+    tarde_comienzo,
+    tarde_fin,
+  } = horastrabajo;
   const dias = [
     'Lunes',
     'Martes',
@@ -43,9 +51,27 @@ const GestionarDiasTrabajo = () => {
     });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    guardarHorasSemana({
+      activo,
+      manana_comienzo,
+      manana_fin,
+      tarde_comienzo,
+      tarde_fin,
+    });
+  };
+
+  const guardarHorasSemana = (datos) => {
+    try {
+      const respuesta = datos;
+      console.log(respuesta);
+    } catch (error) {}
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className='overflow-x-auto'>
           <div className='flex justify-end'>
             <input
