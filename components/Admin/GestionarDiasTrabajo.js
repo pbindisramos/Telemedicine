@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import clienteAxios from '../../config/axios';
+import { v4 as uuidv4 } from 'uuid';
 
 const GestionarDiasTrabajo = () => {
   const [horastrabajo, guardarHoras] = useState({
@@ -94,12 +95,12 @@ const GestionarDiasTrabajo = () => {
                   </thead>
 
                   <tbody className='text-gray-600 text-sm font-light'>
-                    {dias.map((dia, index) => (
+                    {dias.map((dia) => (
                       <tr className='border-b border-gray-200 hover:bg-gray-100'>
                         <td className='py-3 px-6 text-left whitespace-nowrap'>
                           <div className='flex items-center'>
                             <span
-                              key={index}
+                              key={uuidv4()}
                               onChange={onChange}
                               name='dia'
                               value={`${dia}`}
@@ -134,18 +135,18 @@ const GestionarDiasTrabajo = () => {
                                 name='manana_comienzo'
                                 onChange={onChange}
                               >
-                                {horasAM.map((horaam, index) => {
+                                {horasAM.map((horaam) => {
                                   return (
                                     <>
                                       <option
                                         value={`${horaam}` + ':00 am'}
-                                        key={index}
+                                        key={uuidv4()}
                                       >
                                         {`${horaam}`}:00 am
                                       </option>
                                       <option
                                         value={`${horaam}` + ':30 am'}
-                                        key={index}
+                                        key={uuidv4()}
                                       >
                                         {`${horaam}`}:30 am
                                       </option>
@@ -162,18 +163,18 @@ const GestionarDiasTrabajo = () => {
                                 name='manana_fin'
                                 onChange={onChange}
                               >
-                                {horasAM.map((horaam, index) => {
+                                {horasAM.map((horaam) => {
                                   return (
                                     <>
                                       <option
                                         value={`${horaam}` + ':00 am'}
-                                        key={index}
+                                        key={uuidv4()}
                                       >
                                         {`${horaam}`}:00 am
                                       </option>
                                       <option
                                         value={`${horaam}` + ':30 am'}
-                                        key={index}
+                                        key={uuidv4()}
                                       >
                                         {`${horaam}`}:30 am
                                       </option>
@@ -193,18 +194,18 @@ const GestionarDiasTrabajo = () => {
                               name='tarde_comienzo'
                               onChange={onChange}
                             >
-                              {horasPM.map((horapm, index) => {
+                              {horasPM.map((horapm) => {
                                 return (
                                   <>
                                     <option
                                       value={`${horapm}` + ':00 am'}
-                                      key={index}
+                                      key={uuidv4()}
                                     >
                                       {`${horapm}`}:00 pm
                                     </option>
                                     <option
                                       value={`${horapm}` + ':30 am'}
-                                      key={index}
+                                      key={uuidv4()}
                                     >
                                       {`${horapm}`}:30 pm
                                     </option>
@@ -219,18 +220,18 @@ const GestionarDiasTrabajo = () => {
                               name='tarde_fin'
                               onChange={onChange}
                             >
-                              {horasPM.map((horapm, index) => {
+                              {horasPM.map((horapm) => {
                                 return (
                                   <>
                                     <option
                                       value={`${horapm}` + ':00 am'}
-                                      key={index}
+                                      key={uuidv4()}
                                     >
                                       {`${horapm}`}:00 pm
                                     </option>
                                     <option
                                       value={`${horapm}` + ':30 am'}
-                                      key={index}
+                                      key={uuidv4()}
                                     >
                                       {`${horapm}`}:30 pm
                                     </option>
