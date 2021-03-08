@@ -138,16 +138,10 @@ const GestionarDiasTrabajo = () => {
                                 {horasAM.map((horaam) => {
                                   return (
                                     <>
-                                      <option
-                                        value={`${horaam}` + ':00 am'}
-                                        key={uuidv4()}
-                                      >
+                                      <option value={`${horaam}` + ':00 am'}>
                                         {`${horaam}`}:00 am
                                       </option>
-                                      <option
-                                        value={`${horaam}` + ':30 am'}
-                                        key={uuidv4()}
-                                      >
+                                      <option value={`${horaam}` + ':30 am'}>
                                         {`${horaam}`}:30 am
                                       </option>
                                     </>
@@ -166,16 +160,10 @@ const GestionarDiasTrabajo = () => {
                                 {horasAM.map((horaam) => {
                                   return (
                                     <>
-                                      <option
-                                        value={`${horaam}` + ':00 am'}
-                                        key={uuidv4()}
-                                      >
+                                      <option value={`${horaam}` + ':00 am'}>
                                         {`${horaam}`}:00 am
                                       </option>
-                                      <option
-                                        value={`${horaam}` + ':30 am'}
-                                        key={uuidv4()}
-                                      >
+                                      <option value={`${horaam}` + ':30 am'}>
                                         {`${horaam}`}:30 am
                                       </option>
                                     </>
@@ -197,16 +185,10 @@ const GestionarDiasTrabajo = () => {
                               {horasPM.map((horapm) => {
                                 return (
                                   <>
-                                    <option
-                                      value={`${horapm}` + ':00 am'}
-                                      key={uuidv4()}
-                                    >
+                                    <option value={`${horapm}` + ':00 am'}>
                                       {`${horapm}`}:00 pm
                                     </option>
-                                    <option
-                                      value={`${horapm}` + ':30 am'}
-                                      key={uuidv4()}
-                                    >
+                                    <option value={`${horapm}` + ':30 am'}>
                                       {`${horapm}`}:30 pm
                                     </option>
                                   </>
@@ -223,16 +205,10 @@ const GestionarDiasTrabajo = () => {
                               {horasPM.map((horapm) => {
                                 return (
                                   <>
-                                    <option
-                                      value={`${horapm}` + ':00 am'}
-                                      key={uuidv4()}
-                                    >
+                                    <option value={`${horapm}` + ':00 am'}>
                                       {`${horapm}`}:00 pm
                                     </option>
-                                    <option
-                                      value={`${horapm}` + ':30 am'}
-                                      key={uuidv4()}
-                                    >
+                                    <option value={`${horapm}` + ':30 am'}>
                                       {`${horapm}`}:30 pm
                                     </option>
                                   </>
