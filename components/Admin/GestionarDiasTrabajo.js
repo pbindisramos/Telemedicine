@@ -5,11 +5,69 @@ import { v4 as uuidv4 } from 'uuid';
 const GestionarDiasTrabajo = () => {
   const [horatrabajo, guardarHorasTrabajo] = useState([]);
   const [horastrabajo, actualizarHoras] = useState({
-    activo: '',
-    manana_comienzo: '',
-    manana_fin: '',
-    tarde_comienzo: '',
-    tarde_fin: '',
+    lunes: [
+      {
+        activo: '',
+        manana_comienzo: '',
+        manana_fin: '',
+        tarde_comienzo: '',
+        tarde_fin: '',
+      },
+    ],
+    martes: [
+      {
+        activo: '',
+        manana_comienzo: '',
+        manana_fin: '',
+        tarde_comienzo: '',
+        tarde_fin: '',
+      },
+    ],
+    miercoles: [
+      {
+        activo: '',
+        manana_comienzo: '',
+        manana_fin: '',
+        tarde_comienzo: '',
+        tarde_fin: '',
+      },
+    ],
+    jueves: [
+      {
+        activo: '',
+        manana_comienzo: '',
+        manana_fin: '',
+        tarde_comienzo: '',
+        tarde_fin: '',
+      },
+    ],
+    viernes: [
+      {
+        activo: '',
+        manana_comienzo: '',
+        manana_fin: '',
+        tarde_comienzo: '',
+        tarde_fin: '',
+      },
+    ],
+    sabado: [
+      {
+        activo: '',
+        manana_comienzo: '',
+        manana_fin: '',
+        tarde_comienzo: '',
+        tarde_fin: '',
+      },
+    ],
+    domingo: [
+      {
+        activo: '',
+        manana_comienzo: '',
+        manana_fin: '',
+        tarde_comienzo: '',
+        tarde_fin: '',
+      },
+    ],
   });
 
   const {
