@@ -3,7 +3,8 @@ import clienteAxios from '../../config/axios';
 import { v4 as uuidv4 } from 'uuid';
 
 const GestionarDiasTrabajo = () => {
-  const [horastrabajo, guardarHoras] = useState({
+  const [horatrabajo, guardarHorasTrabajo] = useState([]);
+  const [horastrabajo, actualizarHoras] = useState({
     activo: '',
     manana_comienzo: '',
     manana_fin: '',
@@ -46,7 +47,7 @@ const GestionarDiasTrabajo = () => {
   const horasAM = llenarHoraAM();
 
   const onChange = (e) => {
-    guardarHoras({
+    actualizarHoras({
       ...horastrabajo,
       [e.target.name]: e.target.value,
     });
@@ -54,7 +55,7 @@ const GestionarDiasTrabajo = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    guardarHorasSemana({
+    crearHoras({
       activo,
       manana_comienzo,
       manana_fin,
@@ -63,11 +64,8 @@ const GestionarDiasTrabajo = () => {
     });
   };
 
-  const guardarHorasSemana = (datos) => {
-    try {
-      const respuesta = datos;
-      console.log(respuesta);
-    } catch (error) {}
+  const crearHoras = (datos) => {
+    guardarHorasTrabajo([...horatrabajo, datos]);
   };
 
   return (
