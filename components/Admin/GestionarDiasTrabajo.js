@@ -79,15 +79,7 @@ const GestionarDiasTrabajo = () => {
     tarde_comienzo,
     tarde_fin,
   } = horastrabajo;
-  const dias = [
-    'Lunes',
-    'Martes',
-    'Miecoles',
-    'Jueves',
-    'Viernes',
-    'Sábado',
-    'Domingo',
-  ];
+
   const llenarHoraPM = () => {
     let horasPM = [];
     for (let i = 13; i < 23; i++) {
