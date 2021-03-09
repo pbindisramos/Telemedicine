@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import clienteAxios from '../../config/axios';
 import { v4 as uuidv4 } from 'uuid';
+import { object } from 'yup';
 
 const GestionarDiasTrabajo = () => {
   const [horatrabajo, guardarHorasTrabajo] = useState([]);
   const [horastrabajo, actualizarHoras] = useState({
-    lunes: [
+    Lunes: [
       {
         activo: '',
         manana_comienzo: '',
@@ -14,7 +15,7 @@ const GestionarDiasTrabajo = () => {
         tarde_fin: '',
       },
     ],
-    martes: [
+    Martes: [
       {
         activo: '',
         manana_comienzo: '',
@@ -23,7 +24,7 @@ const GestionarDiasTrabajo = () => {
         tarde_fin: '',
       },
     ],
-    miercoles: [
+    Miercoles: [
       {
         activo: '',
         manana_comienzo: '',
@@ -32,7 +33,7 @@ const GestionarDiasTrabajo = () => {
         tarde_fin: '',
       },
     ],
-    jueves: [
+    Jueves: [
       {
         activo: '',
         manana_comienzo: '',
@@ -41,7 +42,7 @@ const GestionarDiasTrabajo = () => {
         tarde_fin: '',
       },
     ],
-    viernes: [
+    Viernes: [
       {
         activo: '',
         manana_comienzo: '',
@@ -50,7 +51,7 @@ const GestionarDiasTrabajo = () => {
         tarde_fin: '',
       },
     ],
-    sabado: [
+    Sábado: [
       {
         activo: '',
         manana_comienzo: '',
@@ -59,7 +60,7 @@ const GestionarDiasTrabajo = () => {
         tarde_fin: '',
       },
     ],
-    domingo: [
+    Domingo: [
       {
         activo: '',
         manana_comienzo: '',
@@ -69,6 +70,7 @@ const GestionarDiasTrabajo = () => {
       },
     ],
   });
+  console.log(Object.keys(horastrabajo));
 
   const {
     activo,
@@ -151,15 +153,13 @@ const GestionarDiasTrabajo = () => {
                   </thead>
 
                   <tbody className='text-gray-600 text-sm font-light'>
-                    {dias.map((dia) => (
+                    {Object.keys(horastrabajo).map((dia) => (
                       <tr className='border-b border-gray-200 hover:bg-gray-100'>
                         <td className='py-3 px-6 text-left whitespace-nowrap'>
                           <div className='flex items-center'>
                             <span
-                              key={uuidv4()}
                               onChange={onChange}
                               name='dia'
-                              value={`${dia}`}
                             >{`${dia}`}</span>
                           </div>
                         </td>
