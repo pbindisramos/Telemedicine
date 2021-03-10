@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clienteAxios from '../../config/axios';
 
 const GestionarDiasTrabajo = () => {
-  const [horatrabajo, guardarHorasTrabajo] = useState([]);
+  const [diastrabajo, guardarDiasTrabajo] = useState([]);
   const [days, setDays] = useState({
     Lunes: [
       {
@@ -96,7 +96,7 @@ const GestionarDiasTrabajo = () => {
           </option>
         </>
       );
-    }, this);
+    });
 
   const [timeafternoon, setTimeafternoon] = useState([
     { Id: '12:30', value: '12:30' },
@@ -134,14 +134,7 @@ const GestionarDiasTrabajo = () => {
           </option>
         </>
       );
-    }, this);
-
-  // const onChange = (e) => {
-  //   actualizarHoras({
-  //     ...horastrabajo,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+    });
 
   const handleInputChangeForDay = (e, day, index) => {
     const { name, value } = e.target;
@@ -154,24 +147,20 @@ const GestionarDiasTrabajo = () => {
     }));
   };
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   crearHoras({
-  //     activo,
-  //     manana_comienzo,
-  //     manana_fin,
-  //     tarde_comienzo,
-  //     tarde_fin,
-  //   });
-  // };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    crearHoras({
+      days,
+    });
+  };
 
-  // const crearHoras = (datos) => {
-  //   guardarHorasTrabajo([...horatrabajo, datos]);
-  // };
+  const crearHoras = (days) => {
+    guardarDiasTrabajo([...diastrabajo, days]);
+  };
 
   return (
     <>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className='overflow-x-auto'>
           <div className='flex justify-end'>
             <input
