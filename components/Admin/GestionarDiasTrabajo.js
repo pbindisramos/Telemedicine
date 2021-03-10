@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clienteAxios from '../../config/axios';
-import { v4 as uuidv4 } from 'uuid';
 import { object } from 'yup';
 
 const GestionarDiasTrabajo = () => {
@@ -70,7 +69,73 @@ const GestionarDiasTrabajo = () => {
       },
     ],
   });
-  console.log(Object.keys(horastrabajo));
+
+  const [timemorning, setTimemorning] = useState([
+    { Id: '05:00', value: '05:00' },
+    { Id: '05:30', value: '05:30' },
+    { Id: '06:00', value: '06:00' },
+    { Id: '06:30', value: '06:30' },
+    { Id: '07:00', value: '07:00' },
+    { Id: '07:30', value: '07:30' },
+    { Id: '08:00', value: '08:00' },
+    { Id: '08:30', value: '08:30' },
+    { Id: '09:00', value: '09:00' },
+    { Id: '09:30', value: '09:30' },
+    { Id: '10:00', value: '10:00' },
+    { Id: '10:30', value: '10:30' },
+    { Id: '11:00', value: '11:00' },
+    { Id: '11:30', value: '11:30' },
+    { Id: '12:00', value: '12:00' },
+  ]);
+  let timeListMorning =
+    timemorning.length > 0 &&
+    timemorning.map((item, i) => {
+      return (
+        <>
+          <option key={item.Id} value={item.id}>
+            {item.value}
+          </option>
+        </>
+      );
+    }, this);
+
+  const [timeafternoon, setTimeafternoon] = useState([
+    { Id: '12:30', value: '12:30' },
+    { Id: '13:00', value: '13:00' },
+    { Id: '13:30', value: '13:30' },
+    { Id: '14:00', value: '14:00' },
+    { Id: '14:30', value: '14:30' },
+    { Id: '15:00', value: '15:00' },
+    { Id: '15:30', value: '15:30' },
+    { Id: '16:00', value: '16:00' },
+    { Id: '16:30', value: '16:30' },
+    { Id: '17:00', value: '17:00' },
+    { Id: '17:30', value: '17:30' },
+    { Id: '18:00', value: '18:00' },
+    { Id: '18:30', value: '18:30' },
+    { Id: '19:00', value: '19:00' },
+    { Id: '19:30', value: '19:30' },
+    { Id: '20:00', value: '20:00' },
+    { Id: '20:30', value: '20:30' },
+    { Id: '21:00', value: '21:00' },
+    { Id: '21:30', value: '21:30' },
+    { Id: '22:00', value: '22:00' },
+    { Id: '22:30', value: '22:30' },
+    { Id: '23:00', value: '23:00' },
+    { Id: '23:30', value: '23:30' },
+    { Id: '24:00', value: '24:00' },
+  ]);
+  let timeListAfternoon =
+    timeafternoon.length > 0 &&
+    timeafternoon.map((item, i) => {
+      return (
+        <>
+          <option key={item.Id} value={item.id}>
+            {item.value}
+          </option>
+        </>
+      );
+    }, this);
 
   const {
     activo,
@@ -79,24 +144,6 @@ const GestionarDiasTrabajo = () => {
     tarde_comienzo,
     tarde_fin,
   } = horastrabajo;
-
-  const llenarHoraPM = () => {
-    let horasPM = [];
-    for (let i = 13; i < 23; i++) {
-      horasPM.push(i);
-    }
-    return horasPM;
-  };
-  const llenarHoraAM = () => {
-    let horasAM = [];
-    for (let i = 5; i < 13; i++) {
-      horasAM.push(i);
-    }
-    return horasAM;
-  };
-
-  const horasPM = llenarHoraPM();
-  const horasAM = llenarHoraAM();
 
   const onChange = (e) => {
     actualizarHoras({
@@ -143,132 +190,99 @@ const GestionarDiasTrabajo = () => {
                       <th className='py-3 px-6 text-center'>Turno Tarde</th>
                     </tr>
                   </thead>
-
-                  <tbody className='text-gray-600 text-sm font-light'>
-                    {Object.keys(horastrabajo).map((dia) => (
-                      <tr className='border-b border-gray-200 hover:bg-gray-100'>
-                        <td className='py-3 px-6 text-left whitespace-nowrap'>
-                          <div className='flex items-center'>
-                            <span
-                              onChange={onChange}
-                              name='dia'
-                            >{`${dia}`}</span>
-                          </div>
-                        </td>
-                        <td className='py-3 px-6'>
-                          <div className='flex items-center'>
-                            <div className='mr-2'>
-                              <div className='form-check form-switch'>
-                                <input
-                                  className='form-check-input '
-                                  type='checkbox'
-                                  id='flexSwitchCheckDefault'
-                                  name='activo'
-                                  onChange={onChange}
-                                />
-                                <label
-                                  className='form-check-label'
-                                  htmlFor='flexSwitchCheckDefault'
-                                ></label>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className='py-3 px-6 text-center'>
-                          <div className='flex items-center justify-center row-auto'>
-                            <div className='col-auto mr-3'>
-                              <select
-                                type='time'
-                                className='form-control'
-                                name='manana_comienzo'
-                                onChange={onChange}
-                              >
-                                {horasAM.map((horaam) => {
-                                  return (
-                                    <>
-                                      <option value={`${horaam}` + ':00 am'}>
-                                        {`${horaam}`}:00 am
-                                      </option>
-                                      <option value={`${horaam}` + ':30 am'}>
-                                        {`${horaam}`}:30 am
-                                      </option>
-                                    </>
-                                  );
-                                })}
-                                <option value='13:00 am'>13:00 am</option>
-                              </select>
-                            </div>
-                            <div className='col-auto'>
-                              <select
-                                type='time'
-                                className='form-control'
-                                name='manana_fin'
-                                onChange={onChange}
-                              >
-                                {horasAM.map((horaam) => {
-                                  return (
-                                    <>
-                                      <option value={`${horaam}` + ':00 am'}>
-                                        {`${horaam}`}:00 am
-                                      </option>
-                                      <option value={`${horaam}` + ':30 am'}>
-                                        {`${horaam}`}:30 am
-                                      </option>
-                                    </>
-                                  );
-                                })}
-                                <option value=''>13:00 am</option>
-                              </select>
-                            </div>
-                          </div>
-                        </td>
-                        <td className='py-3 px-6 text-center'>
-                          <div className='flex items-center justify-center'>
-                            <select
-                              type='time'
-                              className='form-control mr-3'
-                              name='tarde_comienzo'
-                              onChange={onChange}
-                            >
-                              {horasPM.map((horapm) => {
-                                return (
-                                  <>
-                                    <option value={`${horapm}` + ':00 am'}>
-                                      {`${horapm}`}:00 pm
-                                    </option>
-                                    <option value={`${horapm}` + ':30 am'}>
-                                      {`${horapm}`}:30 pm
-                                    </option>
-                                  </>
-                                );
-                              })}
-                              <option value='23:00 am'>23:00 am</option>
-                            </select>
-                            <select
-                              type='time'
-                              className='form-control'
-                              name='tarde_fin'
-                              onChange={onChange}
-                            >
-                              {horasPM.map((horapm) => {
-                                return (
-                                  <>
-                                    <option value={`${horapm}` + ':00 am'}>
-                                      {`${horapm}`}:00 pm
-                                    </option>
-                                    <option value={`${horapm}` + ':30 am'}>
-                                      {`${horapm}`}:30 pm
-                                    </option>
-                                  </>
-                                );
-                              })}
-                              <option value=''>23:00 am</option>
-                            </select>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                  {Object.entries(horastrabajo).map(
+                    ([horastrabajodia, day]) => {
+                      return day.map((x, i) => {
+                        return (
+                          <>
+                            <tbody className='text-gray-600 text-sm font-light'>
+                              <tr className='border-b border-gray-200 hover:bg-gray-100'>
+                                <td className='py-3 px-6 text-left whitespace-nowrap'>
+                                  <div className='flex items-center'>
+                                    <span
+                                      onChange={onChange}
+                                    >{`${horastrabajodia}`}</span>
+                                  </div>
+                                </td>
+                                <td className='py-3 px-6'>
+                                  <div className='flex items-center'>
+                                    <div className='mr-2'>
+                                      <div className='form-check form-switch'>
+                                        <input
+                                          className='form-check-input '
+                                          type='checkbox'
+                                          id='flexSwitchCheckDefault'
+                                          name='activo'
+                                          onChange={onChange}
+                                        />
+                                        <label
+                                          className='form-check-label'
+                                          htmlFor='flexSwitchCheckDefault'
+                                        ></label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className='py-3 px-6 text-center'>
+                                  <div className='flex items-center justify-center row-auto'>
+                                    <div className='col-auto mr-3'>
+                                      <select
+                                        type='time'
+                                        className='form-control'
+                                        name='manana_comienzo'
+                                        value={x.manana_comienzo}
+                                        onChange={onChange}
+                                      >
+                                        {timeListMorning}
+                                      </select>
+                                    </div>
+                                    <div className='col-auto'>
+                                      <select
+                                        type='time'
+                                        className='form-control'
+                                        name='manana_fin'
+                                        value={x.manana_fin}
+                                        onChange={onChange}
+                                      >
+                                        {timeListMorning}
+                                      </select>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className='py-3 px-6 text-center'>
+                                  <div className='flex items-center justify-center row-auto'>
+                                    <div className='col-auto mr-3'>
+                                      <select
+                                        type='time'
+                                        className='form-control'
+                                        name='tarde_comienzo'
+                                        value={x.tarde_comienzo}
+                                        onChange={onChange}
+                                      >
+                                        {timeListAfternoon}
+                                      </select>
+                                    </div>
+                                    <div className='col-auto'>
+                                      <select
+                                        type='time'
+                                        className='form-control'
+                                        name='tarde_fin'
+                                        value={x.tarde_fin}
+                                        onChange={onChange}
+                                      >
+                                        {timeListAfternoon}
+                                      </select>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </>
+                        );
+                      });
+                    }
+                  )}
+                  ;
                 </table>
               </div>
             </div>
