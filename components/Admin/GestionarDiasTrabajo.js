@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import clienteAxios from '../../config/axios';
-import { object } from 'yup';
 
 const GestionarDiasTrabajo = () => {
   const [horatrabajo, guardarHorasTrabajo] = useState([]);
-  const [horastrabajo, actualizarHoras] = useState({
+  const [days, setDays] = useState({
     Lunes: [
       {
         activo: '',
@@ -137,39 +136,42 @@ const GestionarDiasTrabajo = () => {
       );
     }, this);
 
-  const {
-    activo,
-    manana_comienzo,
-    manana_fin,
-    tarde_comienzo,
-    tarde_fin,
-  } = horastrabajo;
+  // const onChange = (e) => {
+  //   actualizarHoras({
+  //     ...horastrabajo,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
-  const onChange = (e) => {
-    actualizarHoras({
-      ...horastrabajo,
-      [e.target.name]: e.target.value,
-    });
+  const handleInputChangeForDay = (e, day, index) => {
+    const { name, value } = e.target;
+    const list = [...days[day]];
+    list[index][name] = value;
+
+    setDays((days) => ({
+      ...days,
+      [day]: list,
+    }));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    crearHoras({
-      activo,
-      manana_comienzo,
-      manana_fin,
-      tarde_comienzo,
-      tarde_fin,
-    });
-  };
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   crearHoras({
+  //     activo,
+  //     manana_comienzo,
+  //     manana_fin,
+  //     tarde_comienzo,
+  //     tarde_fin,
+  //   });
+  // };
 
-  const crearHoras = (datos) => {
-    guardarHorasTrabajo([...horatrabajo, datos]);
-  };
+  // const crearHoras = (datos) => {
+  //   guardarHorasTrabajo([...horatrabajo, datos]);
+  // };
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form>
         <div className='overflow-x-auto'>
           <div className='flex justify-end'>
             <input
@@ -190,98 +192,101 @@ const GestionarDiasTrabajo = () => {
                       <th className='py-3 px-6 text-center'>Turno Tarde</th>
                     </tr>
                   </thead>
-                  {Object.entries(horastrabajo).map(
-                    ([horastrabajodia, day]) => {
-                      return day.map((x, i) => {
-                        return (
-                          <>
-                            <tbody className='text-gray-600 text-sm font-light'>
-                              <tr className='border-b border-gray-200 hover:bg-gray-100'>
-                                <td className='py-3 px-6 text-left whitespace-nowrap'>
-                                  <div className='flex items-center'>
-                                    <span
-                                      onChange={onChange}
-                                    >{`${horastrabajodia}`}</span>
-                                  </div>
-                                </td>
-                                <td className='py-3 px-6'>
-                                  <div className='flex items-center'>
-                                    <div className='mr-2'>
-                                      <div className='form-check form-switch'>
-                                        <input
-                                          className='form-check-input '
-                                          type='checkbox'
-                                          id='flexSwitchCheckDefault'
-                                          name='activo'
-                                          onChange={onChange}
-                                        />
-                                        <label
-                                          className='form-check-label'
-                                          htmlFor='flexSwitchCheckDefault'
-                                        ></label>
-                                      </div>
+                  {Object.entries(days).map(([dayKey, day]) => {
+                    return day.map((x, i) => {
+                      return (
+                        <>
+                          <tbody className='text-gray-600 text-sm font-light'>
+                            <tr className='border-b border-gray-200 hover:bg-gray-100'>
+                              <td className='py-3 px-6 text-left whitespace-nowrap'>
+                                <div className='flex items-center'>
+                                  <span>{dayKey}</span>
+                                </div>
+                              </td>
+                              <td className='py-3 px-6'>
+                                <div className='flex items-center'>
+                                  <div className='mr-2'>
+                                    <div className='form-check form-switch'>
+                                      <input
+                                        className='form-check-input '
+                                        type='checkbox'
+                                        id='flexSwitchCheckDefault'
+                                        name='activo'
+                                      />
+                                      <label
+                                        className='form-check-label'
+                                        htmlFor='flexSwitchCheckDefault'
+                                      ></label>
                                     </div>
                                   </div>
-                                </td>
-                                <td className='py-3 px-6 text-center'>
-                                  <div className='flex items-center justify-center row-auto'>
-                                    <div className='col-auto mr-3'>
-                                      <select
-                                        type='time'
-                                        className='form-control'
-                                        name='manana_comienzo'
-                                        value={x.manana_comienzo}
-                                        onChange={onChange}
-                                      >
-                                        {timeListMorning}
-                                      </select>
-                                    </div>
-                                    <div className='col-auto'>
-                                      <select
-                                        type='time'
-                                        className='form-control'
-                                        name='manana_fin'
-                                        value={x.manana_fin}
-                                        onChange={onChange}
-                                      >
-                                        {timeListMorning}
-                                      </select>
-                                    </div>
+                                </div>
+                              </td>
+                              <td className='py-3 px-6 text-center'>
+                                <div className='flex items-center justify-center row-auto'>
+                                  <div className='col-auto mr-3'>
+                                    <select
+                                      type='time'
+                                      className='form-control'
+                                      name='manana_comienzo'
+                                      value={x.manana_comienzo}
+                                      onChange={(e) =>
+                                        handleInputChangeForDay(e, dayKey, i)
+                                      }
+                                    >
+                                      {timeListMorning}
+                                    </select>
                                   </div>
-                                </td>
-                                <td className='py-3 px-6 text-center'>
-                                  <div className='flex items-center justify-center row-auto'>
-                                    <div className='col-auto mr-3'>
-                                      <select
-                                        type='time'
-                                        className='form-control'
-                                        name='tarde_comienzo'
-                                        value={x.tarde_comienzo}
-                                        onChange={onChange}
-                                      >
-                                        {timeListAfternoon}
-                                      </select>
-                                    </div>
-                                    <div className='col-auto'>
-                                      <select
-                                        type='time'
-                                        className='form-control'
-                                        name='tarde_fin'
-                                        value={x.tarde_fin}
-                                        onChange={onChange}
-                                      >
-                                        {timeListAfternoon}
-                                      </select>
-                                    </div>
+                                  <div className='col-auto'>
+                                    <select
+                                      type='time'
+                                      className='form-control'
+                                      name='manana_fin'
+                                      value={x.manana_fin}
+                                      onChange={(e) =>
+                                        handleInputChangeForDay(e, dayKey, i)
+                                      }
+                                    >
+                                      {timeListMorning}
+                                    </select>
                                   </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </>
-                        );
-                      });
-                    }
-                  )}
+                                </div>
+                              </td>
+                              <td className='py-3 px-6 text-center'>
+                                <div className='flex items-center justify-center row-auto'>
+                                  <div className='col-auto mr-3'>
+                                    <select
+                                      type='time'
+                                      className='form-control'
+                                      name='tarde_comienzo'
+                                      value={x.tarde_comienzo}
+                                      onChange={(e) =>
+                                        handleInputChangeForDay(e, dayKey, i)
+                                      }
+                                    >
+                                      {timeListAfternoon}
+                                    </select>
+                                  </div>
+                                  <div className='col-auto'>
+                                    <select
+                                      type='time'
+                                      className='form-control'
+                                      name='tarde_fin'
+                                      value={x.tarde_fin}
+                                      onChange={(e) =>
+                                        handleInputChangeForDay(e, dayKey, i)
+                                      }
+                                    >
+                                      {timeListAfternoon}
+                                    </select>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </>
+                      );
+                    });
+                  })}
                   ;
                 </table>
               </div>
