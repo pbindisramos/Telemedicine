@@ -194,7 +194,24 @@ const GestionarDiasTrabajo = () => {
                               </td>
                               <td className='py-3 px-6'>
                                 <div className='flex items-center'>
-                                  <div className='mr-2'>
+                                  <div className=''>
+                                    <div className='toggle colour'>
+                                      <input
+                                        id={dayKey}
+                                        className='toggle-checkbox hidden'
+                                        type='checkbox'
+                                        name='activo'
+                                        value={x.activo}
+                                        onChange={console.log('on')}
+                                      />
+                                      <label
+                                        for={dayKey}
+                                        className='toggle-label block w-12 h-6 rounded-full transition-color duration-150 ease-out'
+                                      ></label>
+                                    </div>
+                                  </div>
+
+                                  {/* <div className='mr-2'>
                                     <div className='form-check form-switch'>
                                       <input
                                         className='form-check-input '
@@ -207,7 +224,7 @@ const GestionarDiasTrabajo = () => {
                                         htmlFor='flexSwitchCheckDefault'
                                       ></label>
                                     </div>
-                                  </div>
+                                  </div> */}
                                 </div>
                               </td>
                               <td className='py-3 px-6 text-center'>
