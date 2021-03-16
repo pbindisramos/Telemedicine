@@ -171,10 +171,23 @@ const GestionarDiasTrabajo = () => {
     crearHoras({
       days,
     });
+    crearAgenda({ days });
   };
 
   const crearHoras = (days) => {
     guardarDiasTrabajo([...diastrabajo, days]);
+  };
+
+  const crearAgenda = async (datos) => {
+    try {
+      const respuesta = await clienteAxios.post(
+        '/api/admin/horasmedicas',
+        datos
+      );
+      console.log(respuesta.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -230,7 +243,7 @@ const GestionarDiasTrabajo = () => {
                                         }
                                       />
                                       <label
-                                        for={dayKey}
+                                        htmlFor={dayKey}
                                         className='toggle-label block w-12 h-6 rounded-full transition-color duration-150 ease-out'
                                       ></label>
                                     </div>
