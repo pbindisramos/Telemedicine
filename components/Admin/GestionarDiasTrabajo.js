@@ -6,7 +6,7 @@ const GestionarDiasTrabajo = () => {
   const [days, setDays] = useState({
     Lunes: [
       {
-        activo: '',
+        activo: false,
         manana_comienzo: '',
         manana_fin: '',
         tarde_comienzo: '',
@@ -15,7 +15,7 @@ const GestionarDiasTrabajo = () => {
     ],
     Martes: [
       {
-        activo: '',
+        activo: false,
         manana_comienzo: '',
         manana_fin: '',
         tarde_comienzo: '',
@@ -24,7 +24,7 @@ const GestionarDiasTrabajo = () => {
     ],
     Miercoles: [
       {
-        activo: '',
+        activo: false,
         manana_comienzo: '',
         manana_fin: '',
         tarde_comienzo: '',
@@ -33,7 +33,7 @@ const GestionarDiasTrabajo = () => {
     ],
     Jueves: [
       {
-        activo: '',
+        activo: false,
         manana_comienzo: '',
         manana_fin: '',
         tarde_comienzo: '',
@@ -42,7 +42,7 @@ const GestionarDiasTrabajo = () => {
     ],
     Viernes: [
       {
-        activo: '',
+        activo: false,
         manana_comienzo: '',
         manana_fin: '',
         tarde_comienzo: '',
@@ -51,7 +51,7 @@ const GestionarDiasTrabajo = () => {
     ],
     Sábado: [
       {
-        activo: '',
+        activo: false,
         manana_comienzo: '',
         manana_fin: '',
         tarde_comienzo: '',
@@ -60,7 +60,7 @@ const GestionarDiasTrabajo = () => {
     ],
     Domingo: [
       {
-        activo: '',
+        activo: false,
         manana_comienzo: '',
         manana_fin: '',
         tarde_comienzo: '',
@@ -146,6 +146,25 @@ const GestionarDiasTrabajo = () => {
       [day]: list,
     }));
   };
+  const handleInputChangeForInput = (e, day, index) => {
+    const { name, value } = e.target;
+    let valuec = false;
+
+    if (value == 'false') {
+      valuec = true;
+    } else {
+      valuec = false;
+    }
+
+    const list = [...days[day]];
+
+    list[index][name] = valuec;
+
+    setDays((days) => ({
+      ...days,
+      [day]: list,
+    }));
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -202,7 +221,13 @@ const GestionarDiasTrabajo = () => {
                                         type='checkbox'
                                         name='activo'
                                         value={x.activo}
-                                        onChange={console.log('on')}
+                                        onChange={(e) =>
+                                          handleInputChangeForInput(
+                                            e,
+                                            dayKey,
+                                            i
+                                          )
+                                        }
                                       />
                                       <label
                                         for={dayKey}
@@ -210,21 +235,6 @@ const GestionarDiasTrabajo = () => {
                                       ></label>
                                     </div>
                                   </div>
-
-                                  {/* <div className='mr-2'>
-                                    <div className='form-check form-switch'>
-                                      <input
-                                        className='form-check-input '
-                                        type='checkbox'
-                                        id='flexSwitchCheckDefault'
-                                        name='activo'
-                                      />
-                                      <label
-                                        className='form-check-label'
-                                        htmlFor='flexSwitchCheckDefault'
-                                      ></label>
-                                    </div>
-                                  </div> */}
                                 </div>
                               </td>
                               <td className='py-3 px-6 text-center'>
