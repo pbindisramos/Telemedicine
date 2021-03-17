@@ -49,7 +49,7 @@ const GestionarDiasTrabajo = () => {
         tarde_fin: '',
       },
     ],
-    Sábado: [
+    Sabado: [
       {
         activo: false,
         manana_comienzo: '',
