@@ -21,7 +21,8 @@ const Index = () => {
   return (
     <>
       <Layout>
-        {rol == 'admin' && usuario ? <GestionarDiasTrabajo /> : null}
+        {rol ? <Sidebar /> : null}
+        {/* // {rol == 'admin' && usuario ? <GestionarDiasTrabajo /> : null} */}
       </Layout>
     </>
   );

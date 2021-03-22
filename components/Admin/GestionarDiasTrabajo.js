@@ -173,7 +173,7 @@ const GestionarDiasTrabajo = () => {
     });
     crearAgenda({ days });
   };
-
+  console.log(days);
   const crearHoras = (days) => {
     guardarDiasTrabajo([...diastrabajo, days]);
   };

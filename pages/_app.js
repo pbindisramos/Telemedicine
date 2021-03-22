@@ -1,6 +1,6 @@
-import "tailwindcss/tailwind.css";
-import "../styles/globals.css";
-import AuthState from "../context/auth/authState";
+import 'tailwindcss/tailwind.css';
+import '../styles/globals.css';
+import AuthState from '../context/auth/authState';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
