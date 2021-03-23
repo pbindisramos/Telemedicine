@@ -10,10 +10,17 @@ const Sidebar = () => {
         </p>
         <nav className='mt-10 group'>
           <Link href='/reservahora'>
-            <a className='mt-5 text-xl text-white group-hover:text-gray-600'>
+            <a className='mt-5 text-xl text-white textColor group-hover:text-gray-600'>
               Reserva de Horas
             </a>
           </Link>
+          <div className='mt-4'>
+            <Link href='#'>
+              <a className='text-xl text-white group-hover:text-gray-600'>
+                Mis Reservas
+              </a>
+            </Link>
+          </div>
         </nav>
       </div>
     </div>

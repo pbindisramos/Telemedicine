@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const FormDoctor = () => {
+  const [medicos, guardarMedictos] = useState([
+    'Tomas Saa',
+    'Francisco Neumann',
+    'Teresa Vidaurre',
+  ]);
+  let medicosList =
+    medicos.length > 0 &&
+    medicos.map((item, i) => {
+      return (
+        <>
+          <option key={item} value={item}>
+            {item}
+          </option>
+        </>
+      );
+    });
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -24,10 +40,10 @@ const FormDoctor = () => {
         <div className='flex'>
           <div className='w-full'>
             <form
-              className='bg-white rounded shadown-md px-8 pt-6 pb-8 mb-4 grid grid-cols-2 '
+              className='bg-white rounded shadown-md px-8 pt-6 pb-8 mb-4 grid grid-cols-2'
               onSubmit={formik.handleSubmit}
             >
-              <div className='col-auto mr-2'>
+              <div className='col-auto mr-4'>
                 <div className='mb-4'>
                   <label
                     className='block text-black text-sm font-bold mb-2'
@@ -37,7 +53,7 @@ const FormDoctor = () => {
                   </label>
                   <input
                     type='text'
-                    className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2'
                     id='nombre'
                     placeholder='Nombre'
                     // value={formik.values.password}
@@ -52,7 +68,7 @@ const FormDoctor = () => {
                   </label>
                   <input
                     type='text'
-                    className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2'
                     id='apellido'
                     placeholder='Apellido'
                     // value={formik.values.password}
@@ -104,59 +120,48 @@ const FormDoctor = () => {
                     </div>
                   ) : null}
                 </div>
-                <input
-                  type='submit'
-                  className='bg-blue-500 hover:bg-gay-900 w-full p-2 text-white uppercase font-bold rounded'
-                  value='Siguiente'
-                />
               </div>
-
               <div className='col-auto'>
                 <div className='mb-4'>
                   <label
                     className='block text-black text-sm font-bold mb-2'
-                    htmlFor='nombre'
+                    htmlFor='fecha'
                   >
-                    Nombre
+                    Fecha
                   </label>
                   <input
-                    type='text'
-                    className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                    id='nombre'
-                    placeholder='Nombre'
+                    type='date'
+                    className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2'
+                    id='fecha'
+                    placeholder='Fecha'
                     // value={formik.values.password}
                     // onChange={formik.handleChange}
                     // onBlur={formik.handleBlur}
                   />
                   <label
                     className='block text-black text-sm font-bold mb-2'
-                    htmlFor='apellido'
+                    htmlFor='medico'
                   >
-                    Apellido
+                    Medico
                   </label>
-                  <input
-                    type='text'
-                    className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                    id='apellido'
-                    placeholder='Apellido'
-                    // value={formik.values.password}
-                    // onChange={formik.handleChange}
-                    // onBlur={formik.handleBlur}
-                  />
+                  <select className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2'>
+                    <option>Seleccionar Médico</option>
+                    {medicosList}
+                  </select>
                   <label
                     className='block text-black text-sm font-bold mb-2'
-                    htmlFor='email'
+                    htmlFor='hora'
                   >
-                    Email
+                    Hora de atencion
                   </label>
-                  <input
+                  <select
                     type='email'
                     className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                    id='email'
-                    placeholder='Correo'
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
+                    id='hora'
+                    placeholder='Hora'
+                    // value={formik.values.email}
+                    // onChange={formik.handleChange}
+                    // onBlur={formik.handleBlur}
                   />
                   {formik.touched.email && formik.errors.email ? (
                     <div className='my-2 bg-gray-200 border-l-4 border-blue-500 text-red-600 p-4'>
@@ -168,15 +173,15 @@ const FormDoctor = () => {
                 <div className='mb-4'>
                   <label
                     className='block text-black text-sm font-bold mb-2'
-                    htmlFor='number'
+                    htmlFor='motivo'
                   >
-                    Número de contacto
+                    Motivo Consulta
                   </label>
-                  <input
+                  <textarea
                     type='text'
                     className='shadow appereance-none border rounder w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                    id='numero'
-                    placeholder='Número telefonico'
+                    id='motivo'
+                    placeholder='Motivo'
                     //   value={formik.values.password}
                     //   onChange={formik.handleChange}
                     //   onBlur={formik.handleBlur}
@@ -187,6 +192,11 @@ const FormDoctor = () => {
                       <p>{formik.errors.password}</p>
                     </div>
                   ) : null}
+                  <input
+                    type='submit'
+                    className='bg-blue-500 hover:bg-gay-900 w-full p-2 mt-5 text-white uppercase font-bold rounded'
+                    value='Confirmar hora'
+                  />
                 </div>
               </div>
             </form>
