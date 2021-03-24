@@ -15,7 +15,7 @@ const Sidebar = () => {
             </a>
           </Link>
           <div className='mt-4'>
-            <Link href='#'>
+            <Link href='misreservas'>
               <a className='text-xl text-white group-hover:text-gray-600'>
                 Mis Reservas
               </a>
