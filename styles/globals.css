@@ -44,4 +44,7 @@
   .toggle.colour .toggle-checkbox:checked + .toggle-label {
     background-color: #9ae6b4;
   }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }

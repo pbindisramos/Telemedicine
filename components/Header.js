@@ -19,13 +19,40 @@ const Header = () => {
           />
         </a>
       </Link>
-
       <div>
         {usuario ? (
           <div className='flex items-center'>
-            <p className='mr-2 font-bold text-transform: capitalize'>
+            <div class='p-10'>
+              <div className='dropdown inline-block relative'>
+                <button
+                  type='button'
+                  className='bg-blue-500 px-5 py-3 rounded-lg text-white uppercase'
+                >
+                  <span className='mr-1'>Mi Perfil</span>
+                </button>
+                <ul className='dropdown-menu absolute hidden bg-blue-200 pt-0'>
+                  <li className=''>
+                    <a
+                      className='rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap'
+                      href='#'
+                    >
+                      Editar datos
+                    </a>
+                  </li>
+                  {/* <li className=''>
+                    <a
+                      className='bg-blue-500 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap'
+                      href='#'
+                    >
+                      Two
+                    </a>
+                  </li> */}
+                </ul>
+              </div>
+            </div>
+            {/* <p className='mr-2 font-bold text-transform: capitalize'>
               Hola {usuario.nombre}
-            </p>
+            </p> */}
             <button
               type='button'
               className='bg-blue-500 px-5 py-3 rounded-lg text-white uppercase mr-3'
