@@ -40,6 +40,16 @@ const misReservas = () => {
                           <span>Neurocirujano</span>
                         </div>
                       </td>
+                      <td className='py-3 px-6 text-center'>
+                        <div className='flex items-center justify-center'>
+                          <button
+                            type='button'
+                            className='bg-blue-500 px-5 py-3 rounded-lg text-white'
+                          >
+                            <span className='mr-1'>Pagar</span>
+                          </button>
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
